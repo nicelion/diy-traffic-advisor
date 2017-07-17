@@ -1,0 +1,40 @@
+                              DIY Traffic Advisor 
+                          VERSION 0.1. June 2017.
+
+      Copyright (C) 2017 Ian Thompson (also under pseudonym Nice Lion Technologies) 
+
+
+        THIS WORK IS FREE OF CHARGE BUT YOU ARE ASKED TO STAR ON GITHUB (Starware? Is that a thing?). 
+        YOU ARE PERMITTED TO CHANGE AND MODIFY ANY AND ALL SOURCE CODE WITHIN THE diy-traffic-advisor REPOSITORY. 
+        REDISRIBUTIONS OF diy-traffic-advisor WITHOUT MODIFICATION IS FROWNED UPON, BUT THIS IS AMERICA AND YOU CAN 
+        DO WHAT YOU WANT. JUST PLEASE CHANGE IT IF YOU ARE GOING TO REDISTIBUTE IT. 
+
+BY DOWNLOADING, INSTALLING, OR USING ANY PART OF THE diy-traffic-advisor PROJECT, YOU AGREE TO AND/OR UNDERSTAND THAT:
+
+- Redistrubute only when:
+  - Explicit permission form the owner
+    -or-
+  - Code is modified, changed, replaced, 
+    -or-
+  - Credit to the contributor is given
+    -or-
+  - However whenever you want without permission because your just that kind of person who takes other peoples things
+    and doesent give any credit you you choose to do so because you are a terrible person but realize that the owner of 
+    this repository can't do anything about it because its an open source project and the owner is broke and can't afford
+    a lawyer so you just redistrubute it however you want.
+- The use of traffic advisors my be illegal in your state without proper licences, please review your local laws.
+- The owners and contributors are NOT resposible for criminal penalties you may recieve
+- The owners and contributors are NOT resposible for any damages to vehicle electrical systems caused by hooking up DIY 
+  Traffic Advisor to your car's electrical system
+- Not rely on this traffic advisor for 100% to replace your car's stock traffic lights 
+
+
+This program is free software. It comes without any warranty, to the extent permitted by applicable law. 
+You can redistribute it and/or modify it under the terms of the diy-traffic-advisor Licence as published by Ian Thompson. 
+See https://github.com/nicelion/diy-traffic-advisor/blob/master/LICENSE for more details. 
+
+
+*************************** PLEASE NOTE ***************************
+
+Sometimes, arduinos brake and code doesn't work like it should. You should not rely on DIY Traffic Advisor to 
+replace your car's stock signaling devices
