@@ -68,7 +68,7 @@ void check_btn_state() {
 
   if (buttonState == 1){    
 
-    l_l_r_r_lrlr(60, 2);
+    l_l_r_r_lrlr(61, 2);
 
   } else {
 
