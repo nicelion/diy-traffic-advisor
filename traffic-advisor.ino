@@ -15,6 +15,8 @@ int clockPin = 12;
 int dataPin = 11;
 byte data = 0b00000000;
 
+const int numLEDs = 16;
+
 
 MultiShiftRegister msr (2, latchPin, clockPin, dataPin);
 
@@ -28,13 +30,16 @@ void setup() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   pinMode(2, INPUT);
+  pinMode(1, INPUT);
 
 
   msr.shift();
 
   Serial.begin(9600);
 
-  timer.every(10, check_btn_state);
+//  timer.every(10, check_btn_state); // Really gonna need to figure this out more
+                                    // because at the moment, I have no clue how 
+                                    // to make this less hacky
 
 
 }
@@ -46,9 +51,12 @@ void loop() {
 //  }
 
    timer.update();
+
+   random_flash(100);
   
 
 }
+
 
 
 
@@ -62,15 +70,15 @@ void check_btn_state() {
 
   */
 
-  int buttonState = digitalRead(2);
+  int leftState = digitalRead(3);
+  int rightState = digitalRead(1);
 
 
+  if (leftState == 1){    
 
-  if (buttonState == 1){    
+    left_half(61);
 
-    l_l_r_r_lrlr(61, 2);
 
-  } else {
 
   }
 
@@ -162,25 +170,29 @@ void l_l_r_r_lrlr(int speed, int repeat){
 
 }
 
-void sweep(int speed) {
+void random_flash(int speed) {
 
-  int id = random(3);
+  int id = random(4);
 
   switch (id) {
     case 0:
-      split(speed / 2, 9);
+      split(speed / 2, 1);
       delay(speed);
       break;
     case 1:
-      left_half(speed);
+      l_l_r_r_lrlr(speed, 1);
       delay(speed);
       break;
     case 2:
-      right_half(speed, 0);
+      l_r_l_r(speed);
       delay(speed);
       break;
     case 3:
-      flash_all(speed);
+      l_l_r_r_f_f(speed, 1);
+      delay(speed);
+      break;
+    case 4:
+      even_odd(speed);
       delay(speed);
       break;
 
@@ -189,6 +201,57 @@ void sweep(int speed) {
 
 }
 
+
+void even_odd(int speed) {
+
+   even(90);
+   delay(speed);
+   even(90);
+   delay(speed);
+   even(90);
+   delay(speed);
+   odd(90);
+   delay(speed);
+   odd(90);
+   delay(speed);
+   odd(90);
+   delay(speed);
+  
+}
+
+void even(int speed) {
+
+  for(int i = 0; i <= numLEDs; i++){
+    if(i %2 == 0) {
+      msr.set_shift(i);
+    }
+  }
+
+  delay(speed);
+
+   for (int k = 0; k <= numLEDs; k++){
+        msr.clear_shift(k);
+  
+      }
+  
+}
+
+void odd(int speed) {
+
+  for(int i = 0; i <= numLEDs; i++){
+    if(i % 2 != 0) {
+      msr.set_shift(i);
+    }
+  }
+
+  delay(speed);
+
+   for (int k = 0; k <= 15; k++){
+        msr.clear_shift(k);
+  
+      }
+  
+}
 
 /*
 
@@ -199,13 +262,14 @@ void sweep(int speed) {
 */
 
 
+
 void split(int speed, int repeat){
 
   // LEDS light up in middle, and spread accross
 
   for (int i = repeat; i > 0; i--){
 
-    int num = 1;
+    static int num = 1;
   
     for (int i = 7; i >= 0; i--){
       msr.set_shift(i);
