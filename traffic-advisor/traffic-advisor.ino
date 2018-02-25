@@ -32,6 +32,8 @@ void setup() {
   pinMode(2, INPUT);
   pinMode(1, INPUT);
 
+  pinMode(0, INPUT);
+  digitalWrite(0, LOW);
 
   msr.shift();
 
@@ -52,9 +54,17 @@ void loop() {
 
    timer.update();
 
-   random_flash(100);
-  
+//   random_flash(100);
 
+//  if (digitalRead(0) == 0) {
+//    split(100, 40);
+//  }
+
+  sweep(20);
+  sweep(20);
+  sweep(20);
+
+  l_l_r_r_f_f(75, 2);
 }
 
 
@@ -72,17 +82,9 @@ void check_btn_state() {
 
   int leftState = digitalRead(3);
   int rightState = digitalRead(1);
-
-
   if (leftState == 1){    
-
     left_half(61);
-
-
-
   }
-
-  
 }
 
 /*
@@ -95,6 +97,27 @@ void check_btn_state() {
     etc.
 
 */
+
+
+void sweep(int speed) {
+    for (int k = 15; k >= 0; k--){
+        msr.set_shift(k);
+        msr.set_shift(k - 1);
+        delay(speed);
+        msr.clear_shift(k);
+
+
+      }
+
+      for (int k = 0; k <= 15; k++){
+        msr.set_shift(k);
+        msr.set_shift(k+1);
+        delay(speed);
+        msr.clear_shift(k);
+
+
+      }
+}
 
 void l_l_r_r_f_f(int speed, int repeat){
 
